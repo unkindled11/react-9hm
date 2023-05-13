@@ -1,16 +1,15 @@
+import Form from "./Form";
+
 export const App = () => {
   return (
     <div
       style={{
         height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
+        backgroundColor: '#fdf7f2'
       }}
     >
-      React homework template
+     <Form/>
     </div>
   );
 };
