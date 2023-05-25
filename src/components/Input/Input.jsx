@@ -5,6 +5,7 @@ class Input extends React.Component {
 
   render() {
     const {name, innerText, handleChange, validationAfterBlur, placeholder, type} = this.props;
+    // eslint-disable-next-line no-useless-concat
     const error =  'error' + ' ' + 'error-'+name;
 
     return (
