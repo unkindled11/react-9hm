@@ -7,6 +7,7 @@ class TextArea extends React.Component {
   render() {
     const {textareaLength} = this.props.state
     const {name, innerText, handleChange, placeholder, validationAfterBlur} = this.props;
+    // eslint-disable-next-line no-useless-concat
     const error =  'error' + ' ' + 'error-'+name;
 
     return (
