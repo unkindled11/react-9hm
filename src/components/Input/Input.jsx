@@ -1,34 +1,30 @@
-import React from "react";
 import "./Input.css";
 import chooseValidation from "utils/switchers/validationSwitch";
-class Input extends React.Component {
 
-  render() {
-    const {name, innerText, handleChange, validationAfterBlur, placeholder, type} = this.props;
+const  Input =(props)=> {
+    const {name, InnerText, validationAfterBlur, placeholder, type, value,error} =props;
     // eslint-disable-next-line no-useless-concat
-    const error =  'error' + ' ' + 'error-'+name;
+    const classError =  'error' + ' ' + 'error-'+name;
 
     return (
       <div className='inputBox' >
-        <label className="label" htmlFor={name}>{innerText}<div className={error} ></div></label>
+        <label className="label" htmlFor={name}>{InnerText}<div className={classError} >{error}</div></label>
         <input
         className='input'
           onBlur={(e) => {
             validationAfterBlur(e)}}
           onChange={(e) => {
-            const eValue = chooseValidation(name, e.target.value);
-            handleChange(eValue, name);
+            const eValue = chooseValidation(name, e.target.value)[0];
+            props.handleChange(eValue, name);
           }}
           placeholder={placeholder}
+          type={type|| 'text'}
+          value={value}
           id={name}
-          type={type}
-          name={name}
-          value={this.props.state[name]}
         ></input>
         
       </div>
     );
-  }
 }
 
 export default Input;

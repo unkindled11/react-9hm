@@ -1,102 +1,81 @@
-import { phoneMask } from "../masks/phoneMask.js";
+import { phoneMask } from "utils/masks/phoneMask";
 
-export function nameValidation(value, input) {
-  const span = document.querySelector(`.error-${input}`);
+ export function nameValidation(value, input) {
+  let span
   const name = value.replace(/[^a-zA-Zа-яА-ЯёЁ .]/i, "").trimStart();
   if (name.length === 0) {
-    span.textContent = `This field is empty`;
+    span = `This field is empty`;
   } else {
     if (name[0] !== name[0].toUpperCase()) {
-      span.textContent = `You should start the ${input} with a capital letter`;
+      span = `You should start the ${input} with a capital letter`;
     } else {
-      span.textContent = "";
+      span = "";
     }
   }
-  return name;
+  return [name, span];
 }
 
 export function dateValidation(value) {
   const date = value.replace(/^\d{1,2}\/\d{1,2}\/\d{4}$/, "");
-  const span = document.querySelector(`.error-date`);
+  let span
   if (!date) {
-    span.textContent = `This field is empty`;
+    span = `This field is empty`;
   } else {
-    span.textContent = "";
+    span = "";
   }
-
-  return value;
+  return [value, span];
 }
 
 export function linkValidation(value) {
   const link = value.trimStart();
-  const span = document.querySelector(`.error-link`);
+  let span;
   if (value.length === 0) {
-    span.textContent = `This field is empty`;
+    span = `This field is empty`;
   } else {
     if (value.substring(0, 8) !== "https://") {
-      span.textContent = 'Please start with https://';
+      span = 'You should start the link with "https://';
     } else {
-      span.textContent = "";
+      span = "";
     }
   }
-  return link;
+  return [link, span];
 }
 
 export function phoneValidation(value) {
   const phone = phoneMask(value);
-  const span = document.querySelector(".error-phone");
+  let span;
 
   if (phone.length < 12) {
-    span.textContent = "Please add all numbers";
+    span = "You should add all numbers";
   } else {
-    span.textContent = "";
+    span = "";
   }
-  return phone;
+  return [phone, span];
 }
 
-
 export function textAreaValidation(value, name) {
-  const span = document.querySelector(`.error-${name}`);
+  let span;
   const text = value.trimStart();
 
   if (text.length === 0) {
-    span.textContent = "This field is empty";
+    span = "This field is empty";
   } else {
     if (text.length > 600) {
-      span.textContent = "Too much symbols";
+      span = "Too much symbols";
     } else {
-      span.textContent = "";
+      span = "";
     }
   }
 
-  return text;
+  return [text, span];
 }
 
 
 export function blurValidation(value, name){
-const span = document.querySelector(`.error-${name}`);
-if(value.length===0){
-  span.textContent = "This field is empty";
-}
-}
-
-export function submitValidation(name, value) {
-  const span = document.querySelector(`.error-${name}`);
+  let span;
   if(value.length===0){
-    span.textContent = "This field is empty";
+    span = "This field is empty";
   }
-
-}
-
-export function resetErrors(){
-  const span = document.querySelectorAll(`.error`);
-  span.forEach(el => el.textContent='')
-}
-
-export function changeValidation() {
-  const spans = document.querySelectorAll(`.error`);
-  let errors = [];
-  spans.forEach(el => errors.push(el.textContent));
-  errors = errors.filter(el => el !== '').length;
-  return errors;
-}
+  return span;
+  }
+  

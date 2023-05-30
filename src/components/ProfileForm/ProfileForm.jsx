@@ -1,10 +1,8 @@
-import React from "react";
 import styles from "./ProfileForm.module.css";
 
-export default class FormProfile extends React.Component {
+const  FormProfile =(props)=> {
 
-  render() {
-    const {name, surname, date, phone, link, about, technologies, description} = this.props;
+    const {name, surname, date, phone, link, about, technologies, description} = props;
     return (
         <div className={styles.box}>
       <form className={styles.form}>
@@ -47,5 +45,6 @@ export default class FormProfile extends React.Component {
       </form>
       </div>
     );
-  }
 }
+
+export default FormProfile
